@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "url": "admin/subjects",
+      "name": "Subjects",
+      "icon": "<span class='material-symbols-outlined'>subject</span>",
+      "slug": "admin.subjects.index"
+    },
+    {
+      "url": "admin/batches",
+      "name": "Batches",
+      "icon": "<span class='material-symbols-outlined'>co_present</span>",
+      "slug": "admin.batches.index"
+    },
+    {
+      "url": "admin/students",
+      "name": "Students",
+      "icon": "<span class='material-symbols-outlined'>person</span>",
+      "slug": "admin.students.index"
+    },
+    {
+      "url": "admin/zooms",
+      "name": "Zoom-links",
+      "icon": "<span class='material-symbols-outlined'>video_chat</span>",
+      "slug": "admin.zooms.index"
+    },
+    {
+      "url": "admin/attendances",
+      "name": "Attendance",
+      "icon": "<span class='material-symbols-outlined'>fingerprint</span>",
+      "slug": "admin.attendances.index"
+    }
+  ]
+}
