@@ -20,17 +20,15 @@ class AttendanceTable extends DataTableComponent
     public function configure(): void
     {
         $this->counter = 1;
-        $this->setPrimaryKey('id');
         $this->setFilterPillsStatus(false);
-        $this->setPrimaryKey('id')
+        $this->setBulkActionsDisabled();
+        $this->setColumnSelectDisabled();
 
+        $this->setPrimaryKey('id')
             ->setDefaultSort('id', 'desc')
             ->setEmptyMessage('No Result Found')
             ->setTableAttributes([
                 'id' => 'attendance-table',
-            ])
-            ->setBulkActions([
-                'exportSelected' => 'Export',
             ]);
     }
 
