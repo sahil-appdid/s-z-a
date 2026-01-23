@@ -1,4 +1,4 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts/contentLayoutMaster') 
 
 @section('title', 'Attendances')
 @section('page-style')
