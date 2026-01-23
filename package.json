@@ -9,7 +9,8 @@
     "production": "mix --production"
   },
   "dependencies": {
-    "bootstrap": "4.6.0"
+    "bootstrap": "4.6.0",
+    "puppeteer": "^24.36.0"
   },
   "devDependencies": {
     "axios": "^0.21",

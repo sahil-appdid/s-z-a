@@ -10,8 +10,8 @@
   "require": {
     "php": "^8.2",
     "barryvdh/laravel-dompdf": "^2.2",
-    "enlightn/enlightn": "^1.25",
     "berkayk/onesignal-laravel": "^1.0",
+    "enlightn/enlightn": "^1.25",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
     "hammerstone/fast-paginate": "^0.1.7",
@@ -27,6 +27,7 @@
     "pusher/pusher-php-server": "^7.2",
     "rappasoft/laravel-livewire-tables": "^2.11",
     "rezaamini-ir/migrator": "^1.5",
+    "spatie/browsershot": "^5.2",
     "staudenmeir/belongs-to-through": "^2.5",
     "stevebauman/location": "^7.0"
   },
