@@ -31,16 +31,18 @@ class LinkController extends Controller
         $html = view('content.pdf.invoice')->render();
 
         $pdf = Browsershot::html($html)
+            ->setNodeBinary('/usr/bin/node')
+            ->setNpmBinary('/usr/bin/npm')
+            ->setChromePath('/usr/bin/chromium')
             ->noSandbox()
             ->windowSize(1920, 1080)
             ->format('A4')
             ->margins(10, 10, 10, 10)
-            ->pdf(); // returns raw PDF bytes
+            ->pdf();
 
         return response($pdf, 200, [
             'Content-Type'        => 'application/pdf',
             'Content-Disposition' => 'inline; filename="invoice.pdf"',
-            'Content-Length'      => strlen($pdf),
         ]);
     }
 }
