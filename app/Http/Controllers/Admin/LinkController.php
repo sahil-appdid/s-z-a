@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Spatie\Browsershot\Browsershot;
 
 class LinkController extends Controller
 {
@@ -16,5 +18,24 @@ class LinkController extends Controller
         // dd($studentId, $zoomId, $batchId);
         return view('content.pages.link', compact('studentToken','zoomToken','batchToken'));
 
+    }
+
+     public function dompdf()
+    {
+        $pdf = Pdf::loadView('content.pdf.invoice');
+        return $pdf->download('test.pdf');
+    }
+
+    public function browserpdf()
+    {
+        $html = view('content.pdf.invoice')->render();
+        return response()->streamDownload(function () use ($html) {
+            echo Browsershot::html($html)
+                ->noSandbox()
+                ->windowSize(1920, 1080)
+                ->format('A4')
+                ->margins(10, 10, 10, 10)
+                ->pdf();
+        }, 'invoice.pdf');
     }
 }

@@ -6,6 +6,7 @@ use App\Jobs\SendZoomLink;
 use App\Models\Batch;
 use App\Models\Student;
 use App\Models\Zoom;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
 
@@ -91,19 +92,5 @@ class ZoomController extends Controller
             'message' => 'Zoom deleted successfully',
             'table'   => 'zoom-table',
         ]);
-    }
-
-    public function pdf()
-    {
-        $html = view('content.pdf.invoice');
-        Browsershot::html($html)
-            ->setChromePath('/usr/bin/chromium')
-            ->noSandbox()
-            ->disableGpu()
-            ->timeout(120)
-            ->windowSize(1920, 1080)
-            ->format('A4')
-            ->margins(10, 10, 10, 10)
-            ->pdf();
     }
 }

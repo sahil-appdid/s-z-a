@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use App\Http\Controllers\admin\AttendanceController;
@@ -23,69 +24,71 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
 
-//     Route::name('home.')->controller(DashboardController::class)->group(function () {
-//         Route::get('/', 'home')->name('index');
-//         Route::get('invoice-download', 'downloadPdf')->name('invoice-download');
-//     });
+    //     Route::name('home.')->controller(DashboardController::class)->group(function () {
+    //         Route::get('/', 'home')->name('index');
+    //         Route::get('invoice-download', 'downloadPdf')->name('invoice-download');
+    //     });
 
     Route::name('students.')
         ->prefix('students')
         ->controller(StudentController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('blocked', 'index')->name('blocked');
-        Route::get('deleted', 'index')->name('deleted');
-        Route::post('store', 'store')->name('store');
-        Route::get('{id}/edit', "edit")->name('edit');
-        Route::delete('/{id}', 'destroy')->name('destroy');
-        Route::post('update', 'update')->name('update');
-        Route::put('status', 'status')->name('status');
-    });
+            Route::get('/', 'index')->name('index');
+            Route::get('blocked', 'index')->name('blocked');
+            Route::get('deleted', 'index')->name('deleted');
+            Route::post('store', 'store')->name('store');
+            Route::get('{id}/edit', "edit")->name('edit');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+            Route::post('update', 'update')->name('update');
+            Route::put('status', 'status')->name('status');
+        });
 
     Route::name('batches.')
         ->prefix('batches')
         ->controller(BatchController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('store', 'store')->name('store');
-        Route::get('{id}/edit', "edit")->name('edit');
-        Route::delete('/{id}', 'destroy')->name('destroy');
-        Route::post('update', 'update')->name('update');
-    });
+            Route::get('/', 'index')->name('index');
+            Route::post('store', 'store')->name('store');
+            Route::get('{id}/edit', "edit")->name('edit');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+            Route::post('update', 'update')->name('update');
+        });
 
     Route::name('subjects.')
         ->prefix('subjects')
         ->controller(SubjectController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('blocked', 'index')->name('blocked');
-        Route::get('deleted', 'index')->name('deleted');
-        Route::post('store', 'store')->name('store');
-        Route::get('{id}/edit', "edit")->name('edit');
-        Route::delete('/{id}', 'destroy')->name('destroy');
-        Route::post('update', 'update')->name('update');
-        Route::put('status', 'status')->name('status');
-    });
+            Route::get('/', 'index')->name('index');
+            Route::get('blocked', 'index')->name('blocked');
+            Route::get('deleted', 'index')->name('deleted');
+            Route::post('store', 'store')->name('store');
+            Route::get('{id}/edit', "edit")->name('edit');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+            Route::post('update', 'update')->name('update');
+            Route::put('status', 'status')->name('status');
+        });
 
     Route::name('zooms.')
         ->prefix('zooms')
         ->controller(ZoomController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('blocked', 'index')->name('blocked');
-        Route::get('deleted', 'index')->name('deleted');
-        Route::post('store', 'store')->name('store');
-        Route::get('{id}/edit', "edit")->name('edit');
-        Route::delete('/{id}', 'destroy')->name('destroy');
-        Route::post('update', 'update')->name('update');
-        Route::put('status', 'status')->name('status');
-        Route::get('pdf', 'pdf')->name('pdf');
-    });
+            Route::get('/', 'index')->name('index');
+            Route::get('blocked', 'index')->name('blocked');
+            Route::get('deleted', 'index')->name('deleted');
+            Route::post('store', 'store')->name('store');
+            Route::get('{id}/edit', "edit")->name('edit');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+            Route::post('update', 'update')->name('update');
+            Route::put('status', 'status')->name('status');
+        });
 
     Route::name('attendances.')
         ->prefix('attendances')
         ->controller(AttendanceController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
-
+            Route::get('/', 'index')->name('index');
+        });
 });
 
-Route::get('/link', [LinkController::class, 'index']);
+Route::name('link.')->prefix('link')->controller(LinkController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('dompdf', 'dompdf')->name('dompdf');
+    Route::get('browserpdf', 'browserpdf')->name('browserpdf');
+});
 
 Route::get('/zoom-link', [AttendanceController::class, 'store']);
