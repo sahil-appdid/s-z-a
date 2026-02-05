@@ -9,18 +9,18 @@ use Spatie\Browsershot\Browsershot;
 
 class LinkController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
-        $studentToken=$request->student_id;
-        $zoomToken=$request->zoom_id;
-        $batchToken=$request->batch_id;
+        $studentToken = $request->student_id;
+        $zoomToken = $request->zoom_id;
+        $batchToken = $request->batch_id;
 
         // dd($studentId, $zoomId, $batchId);
-        return view('content.pages.link', compact('studentToken','zoomToken','batchToken'));
-
+        return view('content.pages.link', compact('studentToken', 'zoomToken', 'batchToken'));
     }
 
-     public function dompdf()
+    public function dompdf()
     {
         $pdf = Pdf::loadView('content.pdf.invoice');
         return $pdf->download('test.pdf');
@@ -29,13 +29,18 @@ class LinkController extends Controller
     public function browserpdf()
     {
         $html = view('content.pdf.invoice')->render();
-        return response()->streamDownload(function () use ($html) {
-            echo Browsershot::html($html)
-                ->noSandbox()
-                ->windowSize(1920, 1080)
-                ->format('A4')
-                ->margins(10, 10, 10, 10)
-                ->pdf();
-        }, 'invoice.pdf');
+
+        $pdf = Browsershot::html($html)
+            ->noSandbox()
+            ->windowSize(1920, 1080)
+            ->format('A4')
+            ->margins(10, 10, 10, 10)
+            ->pdf(); // returns raw PDF bytes
+
+        return response($pdf, 200, [
+            'Content-Type'        => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="invoice.pdf"',
+            'Content-Length'      => strlen($pdf),
+        ]);
     }
 }
