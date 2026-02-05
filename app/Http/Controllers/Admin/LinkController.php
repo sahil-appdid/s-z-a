@@ -38,7 +38,6 @@ class LinkController extends Controller
             ->noSandbox()
             ->addChromiumArguments([
                 '--disable-dev-shm-usage',
-                '--disable-gpu',
             ])
             ->windowSize(1920, 1080)
             ->format('A4')
