@@ -28,13 +28,18 @@ class LinkController extends Controller
 
     public function browserpdf()
     {
+
         $html = view('content.pdf.invoice')->render();
 
         $pdf = Browsershot::html($html)
             ->setNodeBinary('/usr/bin/node')
             ->setNpmBinary('/usr/bin/npm')
-            ->setChromePath('/usr/bin/chromium')
+            ->setChromePath('/usr/bin/google-chrome-stable')
             ->noSandbox()
+            ->addChromiumArguments([
+                '--disable-dev-shm-usage',
+                '--disable-gpu',
+            ])
             ->windowSize(1920, 1080)
             ->format('A4')
             ->margins(10, 10, 10, 10)
