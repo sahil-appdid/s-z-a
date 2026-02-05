@@ -36,8 +36,10 @@ class LinkController extends Controller
             ->setNpmBinary('/usr/bin/npm')
             ->setChromePath('/usr/bin/google-chrome-stable')
             ->noSandbox()
+            ->showBackground()
             ->addChromiumArguments([
                 '--disable-dev-shm-usage',
+                '--disable-gpu',
             ])
             ->windowSize(1920, 1080)
             ->format('A4')
