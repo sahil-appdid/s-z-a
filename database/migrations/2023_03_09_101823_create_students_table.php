@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->foreignId('batch_id')->constrained()->onDelete('cascade');  
+            $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('batch_id')->nullable()->constrained()->onDelete('cascade');  
             $table->enum('status', ['active', 'blocked'])->default('active');
             $table->timestamps();
         });

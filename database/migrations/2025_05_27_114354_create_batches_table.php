@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->enum('status', ['active', 'blocked'])->default('active');
         });

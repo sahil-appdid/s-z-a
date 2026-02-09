@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('zooms', function (Blueprint $table) {
             $table->id();
             $table->string('link')->nullable();
-            $table->foreignId('batch_id')->constrained()->onDelete('cascade');
+            $table->foreignId('batch_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->enum('status', ['active', 'blocked'])->default('active');
         });
